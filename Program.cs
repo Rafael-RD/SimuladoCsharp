@@ -67,9 +67,23 @@ namespace Simulado
                     }
                     tentativas++;
                 }
-                Console.WriteLine($"Parabens você ganhou em {tentativas} tentativasa");
+                Console.WriteLine($"\nParabens você ganhou em {tentativas} tentativas");
             }
-            forca();
+            
+            void palindromo()
+            {
+                Console.Write("Palindromo\nDigite uma palavra: ");
+                string palavra = Console.ReadLine();
+                bool flag=true;
+                for (int i = 0; i < palavra.Length/2; i++)
+                {
+                    if (palavra[i] != palavra[palavra.Length-i-1]) flag =false;
+                }
+                if (flag) Console.WriteLine($"A palavra {palavra} é um palindromo");
+                else Console.WriteLine($"A palavra {palavra} não é um palindromo");
+            }
+
+            palindromo();
         }
     }
 }

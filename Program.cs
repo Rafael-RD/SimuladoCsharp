@@ -56,11 +56,11 @@ namespace Simulado
                     if (resposta.Contains(chute[0]))
                     {
                         List<int> idxAcertos = new List<int>();
-                        for(int i = 0; i<resposta.Length; i++)
+                        for (int i = 0; i < resposta.Length; i++)
                         {
                             if (chute[0] == resposta[i]) idxAcertos.Add(i);
                         }
-                        for(int i = 0; i < idxAcertos.Count; i++)
+                        for (int i = 0; i < idxAcertos.Count; i++)
                         {
                             palavra[idxAcertos[i]] = resposta[idxAcertos[i]];
                         }
@@ -69,21 +69,75 @@ namespace Simulado
                 }
                 Console.WriteLine($"\nParabens você ganhou em {tentativas} tentativas");
             }
-            
+
             void palindromo()
             {
                 Console.Write("Palindromo\nDigite uma palavra: ");
                 string palavra = Console.ReadLine();
-                bool flag=true;
-                for (int i = 0; i < palavra.Length/2; i++)
+                bool flag = true;
+                for (int i = 0; i < palavra.Length / 2; i++)
                 {
-                    if (palavra[i] != palavra[palavra.Length-i-1]) flag =false;
+                    if (palavra[i] != palavra[palavra.Length - i - 1]) flag = false;
                 }
                 if (flag) Console.WriteLine($"A palavra {palavra} é um palindromo");
                 else Console.WriteLine($"A palavra {palavra} não é um palindromo");
             }
 
-            palindromo();
+            void ordenar()
+            {
+                Console.WriteLine("Ordenar numeros");
+                Console.Write("Quantos numeros serão digitados: ");
+                int qtd = int.Parse(Console.ReadLine());
+                int[] array = new int[qtd];
+                for (int i = 0; i < array.Length; i++)
+                {
+                    Console.Write($"Numero para a posição {i + 1}: ");
+                    array[i] = int.Parse(Console.ReadLine());
+                }
+                for (int i = 0; i < array.Length; i++)
+                {
+                    Console.Write(array[i] + " ");
+                }
+                for (int i = 0; i < array.Length; i++)
+                {
+                    int idxMenor = i;
+                    for (int j = i + 1; j < array.Length; j++)
+                    {
+                        if (array[idxMenor] > array[j]) idxMenor = j;
+                    }
+                    (array[i], array[idxMenor]) = (array[idxMenor], array[i]);
+                }
+                Console.WriteLine("\nOrdenado:");
+                for (int i = 0; i < array.Length; i++)
+                {
+                    Console.Write(array[i] + " ");
+                }
+
+            }
+
+            ReAsk:
+            Console.WriteLine("1 - Forca");
+            Console.WriteLine("2 - Palindromo");
+            Console.WriteLine("3 - Ordenar");
+            Console.Write("Selecione um programa: ");
+
+            switch (Console.ReadLine())
+            {
+                case "1":
+                    Console.WriteLine();
+                    forca();
+                    break;
+                case "2":
+                    Console.WriteLine();
+                    palindromo(); 
+                    break;
+                case "3":
+                    Console.WriteLine();
+                    ordenar();
+                    break;
+                default:
+                    goto ReAsk;
+            }
         }
     }
 }
